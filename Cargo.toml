@@ -1,0 +1,9 @@
+[workspace]
+members = ["axum-derive-otel-core", "axum-derive-otel-macro"]
+
+[package]
+name = "axum-derive-otel"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
