@@ -1,9 +1,20 @@
-[workspace]
-members = ["axum-derive-otel-core", "axum-derive-otel-macro"]
-
 [package]
 name = "axum-derive-otel"
+authors = ["Dan Alekseev <i@qrd.wtf>"]
+license = "MIT"
+description = "Derive macros for axum with opentelemetry"
+repository = "https://github.com/qrdwtf/axum-derive-otel"
+categories = ["web-programming"]
+keywords = ["axum", "opentelemetry", "derive"]
 version = "0.1.0"
 edition = "2021"
 
+[workspace]
+members = ["axum-derive-otel-core", "axum-derive-otel-macro"]
+
 [dependencies]
+axum-derive-otel-core = { path = "axum-derive-otel-core" }
+axum-derive-otel-macro = { path = "axum-derive-otel-macro" }
+
+[dev-dependencies]
+trybuild = "1.0"

@@ -3,7 +3,9 @@ name = "axum-derive-otel-core"
 version = "0.1.0"
 edition = "2021"
 
-[lib]
-proc-macro = true
-
 [dependencies]
+async-trait = "0.1"
+axum-core = "0.4"
+http = "1.1"
+opentelemetry = { version = "0.22", features = ["metrics", "logs"] }
+opentelemetry_sdk = { version = "0.22", features = ["rt-tokio", "logs"] }
