@@ -5,7 +5,10 @@ pub fn transform(source_fn: ItemFn) -> ItemFn {
         fn index(
             axum_derive_otel::ExtractOtelContext(axum_derive_otel_context): axum_derive_otel::ExtractOtelContext,
         ) {
-            tracing::Span::current().set_parent(axum_derive_otel_context);
+            axum_derive_otel::OpenTelemetrySpanExt::set_parent(
+                &axum_derive_otel::Span::current(),
+                axum_derive_otel_context,
+            );
         }
     );
 

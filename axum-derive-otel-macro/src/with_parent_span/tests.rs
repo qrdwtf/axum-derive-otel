@@ -19,7 +19,10 @@ fn with_parent_span() {
             axum_derive_otel::ExtractOtelContext(axum_derive_otel_context): axum_derive_otel::ExtractOtelContext,
             ExtractLocale(locale): ExtractLocale
         ) -> Html<String> {
-            tracing::Span::current().set_parent(axum_derive_otel_context);
+            axum_derive_otel::OpenTelemetrySpanExt::set_parent(
+                &axum_derive_otel::Span::current(),
+                axum_derive_otel_context,
+            );
 
             let ctx = EmailTemplate { locale };
 
@@ -27,7 +30,7 @@ fn with_parent_span() {
         }
     };
 
-    let after = macros(quote! {with_layout, state1, state2}, before);
+    let after = macros(quote! {}, before);
 
     assert_tokens_eq(&expected, &after);
 }

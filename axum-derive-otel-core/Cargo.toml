@@ -7,5 +7,7 @@ edition = "2021"
 async-trait = "0.1"
 axum-core = "0.4"
 http = "1.1"
-opentelemetry = { version = "0.22", features = ["metrics", "logs"] }
-opentelemetry_sdk = { version = "0.22", features = ["rt-tokio", "logs"] }
+opentelemetry = "0.22"
+opentelemetry_sdk = "0.22"
+tracing = "0.1"
+tracing-opentelemetry = "0.23"

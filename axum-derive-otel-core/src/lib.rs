@@ -3,6 +3,9 @@ use axum_core::extract::FromRequestParts;
 use http::{request::Parts, HeaderMap};
 use opentelemetry::{propagation::Extractor, Context};
 
+pub use tracing::Span;
+pub use tracing_opentelemetry::OpenTelemetrySpanExt;
+
 pub struct ExtractOtelContext(pub Context);
 
 #[async_trait]
@@ -25,7 +28,7 @@ pub struct OtelHeadersExtractor<'a>(pub &'a HeaderMap);
 
 impl<'a> Extractor for OtelHeadersExtractor<'a> {
     fn get(&self, key: &str) -> Option<&str> {
-        self.0.get(key).and_then(|v| v.to_str().ok())
+        self.0.get(key).and_then(|value| value.to_str().ok())
     }
 
     fn keys(&self) -> Vec<&str> {
